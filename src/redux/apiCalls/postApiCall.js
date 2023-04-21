@@ -92,12 +92,16 @@ export function createPost(newPost) {
     const token = getState().auth.user.token;
     try {
       dispatch(setLoading());
-      await request.post(`/api/posts`, newPost, {
-        headers: {
-          Authorization: 'Bearer ' + token,
-          'Content-Type': 'multipart/form-data',
-        },
-      });
+      await axios.post(
+        `https://blog-api-wut6.onrender.com/api/posts`,
+        newPost,
+        {
+          headers: {
+            Authorization: 'Bearer ' + token,
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+      );
       // if still true can not open create post anymore
       dispatch(setIsPostCreated());
       setTimeout(() => dispatch(clearIsPostCreated()), 2000);
