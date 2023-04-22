@@ -12,7 +12,6 @@ import {
   setPostsCount,
 } from '../slices/postSlices';
 import request from '../../utils/request';
-
 // fetch all posts
 export function fetchAllPosts() {
   return async (dispatch) => {
@@ -92,8 +91,8 @@ export function createPost(newPost) {
     const token = getState().auth.user.token;
     try {
       dispatch(setLoading());
-      await axios.post(
-        `https://blog-api-wut6.onrender.com/api/posts`,
+      await request.post(
+        `/api/posts`,
         newPost,
         {
           headers: {
